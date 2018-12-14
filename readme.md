@@ -12,20 +12,20 @@ In this tutorial, we will be covering how to setup a server running on localhost
 
 1. run `cd cert`
 
-2. Generate a rsa private key. This key will be used to sign our CSR and encrypt our traffic.  Remember the passphase for later
+2. Generate a rsa private key. This key will be used to sign our CSR and encrypt our traffic.
 - run `openssl genrsa -des3 -out server.key 2048`
+- Remember the passphase for later
 
 3. Generate a CSR using private key:
 - run `openssl req -new -key server.key -out server.csr`
 - enter passphase from step 2
-- set `Common Name (CN)` to `localhost`
-- everything else can be anything
+- set `Common Name (CN)` to `localhost`. Everything else can be anything
 
-4. Create certificate by signing the `.csr`. This step would typically be completed by a CA like [letsencrypt](https://letsencrypt.org/) (thus why we call this a "self-signed" certificate)
+1. Create certificate by signing the `.csr`. This step would typically be completed by a CA like [Lets Encrypt](https://letsencrypt.org/) (thus why we call this a "self-signed" certificate)
 - run `openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt -extfile v3.ext`
 - The `-extfile v3.ext` is an [extra param we have to do here to get chrome to trust our localhost certificate](https://serverfault.com/questions/880804/can-not-get-rid-of-neterr-cert-common-name-invalid-error-in-chrome-with-self)
 
-You now should have the following files in your `cert` directory:
+You now should have the following new files in your `cert` directory:
 
 - server.key: your secret key
 - server.csr: the certificate signing request.  Can be deleted
@@ -59,4 +59,4 @@ To get osx to trust the certificate:
 4. expand the trust section
 5. click always
 6. close the window and enter password again
-7. Reload [https://localhost:3000](https://localhost:3000/) and you should now see the error is gone
+7. Reload [https://localhost:3000](https://localhost:3000/) and you should now see "Hello World"
