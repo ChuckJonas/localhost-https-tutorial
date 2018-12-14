@@ -1,11 +1,12 @@
-# Local SSL tutorial
+# localhost https tutorial
 
 In this tutorial, we will be covering how to setup a server running on localhost with a `https` by creating a self-signed certificate.
 
 ## setup
 
-1. clone
-2. npm install
+1. `git clone git@github.com:ChuckJonas/localhost-https-tutorial.git`
+2. `cd localhost-https-tutorial`
+3. `npm install`
 
 ## Create self-signed certificate
 
